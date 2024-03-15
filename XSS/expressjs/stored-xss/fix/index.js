@@ -5,6 +5,14 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 
+function readFile() {
+
+}
+
+function storeComment() {
+  
+}
+
 app.get('/', function (req, res) {
     hackerInput = he.encode('<script>alert("Hi")</script>');
     const htmlResponse = `<h2>Comments:</h2> <br>
