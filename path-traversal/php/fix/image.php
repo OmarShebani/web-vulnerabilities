@@ -1,7 +1,19 @@
 <?php
 if (isset($_GET['filename'])) {
     $filename = $_GET['filename'];
-    $filepath = '../images/' . $filename;
+
+    // Sanitize the filename by removing any directory traversal sequences
+    $filename = basename($filename);
+
+    $baseDir = realpath('../../images/');
+    $filepath = $baseDir . DIRECTORY_SEPARATOR . $filename;
+
+    // Ensure the resolved path is within the base directory
+    if (strpos(realpath($filepath), $baseDir) !== 0) {
+        header("HTTP/1.1 400 Bad Request");
+        echo "Invalid file path.";
+        exit;
+    }
     
     if (file_exists($filepath)) {
         // Get the file's mime type
